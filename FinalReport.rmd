@@ -23,6 +23,10 @@ mutate(across(where(is.character), as.factor))
 
 A new  preventative aides drug (triUmpsal) is under test in clinical trials. Consider only the females, does this drug seem effective?  Hint - use dplyr to obtain that subpopulation with the filter command.
 
+
+$H0$ There is no difference between taking the drug and taking the placebo for females getting aids.  
+$HA$ There is a difference between taking the drug and taking the placebo for females getting aids.   
+
 # Methods
 
 <!--Decide on your methods:  use "variable analysis" or other appropriate descriptors.  Make sure to choose at least one graphical method and at least one numerical method. Discuss what data manipulations may be needed for example subsetting or other binning procedures and what sort of graphical displays and inferential tools will be used!-->
@@ -54,9 +58,26 @@ Given the two graphs above, we can see that the frequency of females who got aid
 
 <!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
 
+```{r}
+table1 <- xtabs(~infected + treatment, data=females)
+rowPerc(table1)
+colPerc(table1)
+```
+The two tables above show the specific values for the percentages of females who did and did not get the treatment and whether they got aids or not. Similar to the observations made in the graphical descriptive results, majority of the females, both who took the drug and did not, did not get aids. Specifically, 96.31% of females who took the drug did not get aids while 97.58% of females who did not get the treatment did not get  aids. However, looking at the percentages of females who got aids, 58.82% took the drug which is higher than the percentage of females who received the placebo. Therefore, this supports the idea that the drug may not be effective against aids among females. 
+
+
 ## Inferential Results
 
 <!--State hypothesis clearly.  Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc.  Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfys the assumptions and is appropriate to answer the research question!-->
+
+
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+fisher.test(table1)
+```
+
+Based on the Chi-squared test above, the p-value is very small which means that we reject the null hypothesis that claims that there is no difference between taking the drug and taking the placebo for getting aids among females. This difference, however, is opposite of the expected effect of the drug. Rather than prevent aids infection, the drug seems to cause it. Therefore, this drug does not appear effective against aids prevention.  
 
 
 # Discussion and Conclusion
