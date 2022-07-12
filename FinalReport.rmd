@@ -47,6 +47,9 @@ barchartGC(~infected + treatment,data=females, type="percent")
 
 ```
 
+Given the two graphs above, we can see that the frequency of females who got aids is relatively much smaller compared to those who didn't. However, looking at the percentage graph, we can see that among the females who got aids, most have taken the drug. In other words, the females who received the treatment got aids still. This may suggest the ineffectiveness of the drug against aids. 
+
+
 ### Numerical Descriptive Results
 
 <!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
